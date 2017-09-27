@@ -1,0 +1,30 @@
+{
+  "name": "reiter",
+  "version": "1.0.0",
+  "main": "dist/reiter.min.js",
+  "module": "src/index.js",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest --coverage",
+    "test:lodash": "jest --coverage --config jest.lodash.config.js",
+    "build": "node ./build.js",
+    "lint": "prettier --ignore-path '.gitignore' --write -- '**/*.js' && eslint --ignore-path '.gitignore' -- '**/*.js'"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-minify": "^0.2.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
+    "babel-register": "^6.26.0",
+    "chalk": "^2.1.0",
+    "convert-source-map": "^1.5.0",
+    "eslint": "^4.7.2",
+    "fs-extra": "^4.0.2",
+    "jest": "^21.1.0",
+    "jest-diff": "^21.1.0",
+    "lodash": "^4.17.4",
+    "prettier": "^1.7.0",
+    "rollup": "^0.50.0",
+    "rollup-plugin-alias": "^1.3.1"
+  }
+}
