@@ -109,7 +109,8 @@ module.exports = {
     {
       files: [src],
       env: { node: false },
-      globals: { process: false }
+      globals: { process: false },
+      rules: { "require-jsdoc": "error" }
     },
     {
       files: [test],

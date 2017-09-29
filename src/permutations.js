@@ -7,23 +7,23 @@ function* permutations(r, pool) {
   if (r === 0) {
     yield [];
   } else {
-    const usedElements = [];
+    const usedValues = [];
     let iterator = iter(pool);
     let tempIterator;
-    let { done, value: element } = iterator.next();
+    let { done, value } = iterator.next();
     if (done && r == null) {
       yield [];
     } else {
       while (!done) {
         [iterator, tempIterator] = tee(2, iterator);
-        const inUseIterator = chain(usedElements, tempIterator);
+        const inUseIterator = chain(usedValues, tempIterator);
         const p = permutations(r == null ? r : r - 1, inUseIterator);
         for (const tuple of p) {
-          tuple.unshift(element);
+          tuple.unshift(value);
           yield tuple;
         }
-        usedElements.push(element);
-        ({ done, value: element } = iterator.next());
+        usedValues.push(value);
+        ({ done, value } = iterator.next());
       }
     }
   }

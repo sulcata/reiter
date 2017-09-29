@@ -4,7 +4,7 @@ import * as matchers from "./matchers.js";
 expect.extend(matchers);
 
 describe("some(predicate, iterable)", () => {
-  test("checks if some element satisfies the predicate", () => {
+  test("checks if some value satisfies the predicate", () => {
     const isPositive = jest.fn(n => n > 0);
     expect(some(isPositive, [-1, 1, 2, 3])).toBe(true);
     expect(isPositive.mock.calls).toEqual([[-1], [1]]);

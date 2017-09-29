@@ -1,15 +1,15 @@
 import curry from "__curry__";
 
 function* uniqWith(comparator, iterable) {
-  const previousElements = [];
-  outer: for (const element of iterable) {
-    for (const previousElement of previousElements) {
-      if (comparator(element, previousElement)) {
+  const previousValues = [];
+  outer: for (const value of iterable) {
+    for (const previousValue of previousValues) {
+      if (comparator(value, previousValue)) {
         continue outer;
       }
     }
-    previousElements.push(element);
-    yield element;
+    previousValues.push(value);
+    yield value;
   }
 }
 

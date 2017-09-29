@@ -8,7 +8,7 @@ describe("product(iterable)", () => {
     expect(product([])).toBe(1);
   });
 
-  test("finds the product of the elements of the iterable", () => {
+  test("finds the product of the values of the iterable", () => {
     expect(product([1, 2, 3, 4])).toBe(24);
   });
 });

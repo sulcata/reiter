@@ -8,7 +8,7 @@ describe("sum(iterable)", () => {
     expect(sum([])).toBe(0);
   });
 
-  test("finds the sum of the elements of the iterable", () => {
+  test("finds the sum of the values of the iterable", () => {
     expect(sum([1, 2, 3, 4])).toBe(10);
   });
 });

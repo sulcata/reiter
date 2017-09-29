@@ -4,7 +4,7 @@ import * as matchers from "./matchers.js";
 expect.extend(matchers);
 
 describe("reject(predicate, iterable)", () => {
-  test("yields all elements which do not satisfy the predicate", () => {
+  test("yields all values which do not satisfy the predicate", () => {
     const isOdd = jest.fn(n => n % 2);
     const array1 = [1, 2, 3, 4];
     expect(reject(isOdd, array1)).toIterEqual([2, 4]);

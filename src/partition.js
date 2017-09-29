@@ -6,6 +6,7 @@ function* partition(iteratee, iterable) {
   const partitions = new Map();
   const partitionsToYield = [];
 
+  /** @private */
   function getPartition(mappedValue) {
     if (!partitions.has(mappedValue)) {
       const partition = [];
@@ -16,6 +17,7 @@ function* partition(iteratee, iterable) {
     return partitions.get(mappedValue);
   }
 
+  /** @private */
   function* partitionGenerator(partition) {
     for (;;) {
       if (partition.length === 0) {

@@ -3,7 +3,7 @@ import * as matchers from "./matchers.js";
 
 expect.extend(matchers);
 
-describe("powerSet(pool)", () => {
+describe("powerSet(set)", () => {
   test("power set of the empty set is only the empty set", () => {
     expect(powerSet([])).toIterEqual([[]]);
   });

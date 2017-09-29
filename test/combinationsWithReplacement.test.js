@@ -3,7 +3,7 @@ import * as matchers from "./matchers.js";
 
 expect.extend(matchers);
 
-describe("combinationsWithReplacement(r, pool)", () => {
+describe("combinationsWithReplacement(r, set)", () => {
   test("size 0 combinations are only the empty set", () => {
     expect(combinationsWithReplacement(0, [1, 2])).toIterEqual([[]]);
   });

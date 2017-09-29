@@ -3,8 +3,8 @@ import * as matchers from "./matchers.js";
 
 expect.extend(matchers);
 
-describe("cartesianAll(pools)", () => {
-  test("finds the cartesian product of all pools", () => {
+describe("cartesianAll(sets)", () => {
+  test("finds the cartesian product of all sets", () => {
     expect(cartesianAll([
         "a",
         [1, 2],
@@ -19,7 +19,7 @@ describe("cartesianAll(pools)", () => {
     ]);
   });
 
-  test("empty pool", () => {
+  test("empty set", () => {
     expect(cartesianAll([[], "a", [1, 2], [3, 4, 5]])).toIterEqual([]);
   });
 

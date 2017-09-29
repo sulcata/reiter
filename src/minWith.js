@@ -6,9 +6,9 @@ const minWith = (comparator, iterable) => {
   const { done, value } = iterator.next();
   if (done) return undefined;
   let min = value;
-  for (const element of iterator) {
-    if (comparator(element, min) < 0) {
-      min = element;
+  for (const value of iterator) {
+    if (comparator(value, min) < 0) {
+      min = value;
     }
   }
   return min;

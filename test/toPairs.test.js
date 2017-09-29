@@ -3,8 +3,8 @@ import * as matchers from "./matchers.js";
 
 expect.extend(matchers);
 
-describe("fromPairs(pairs)", () => {
-  test("returns the object formed from [key, value] pairs", () => {
+describe("toPairs(object)", () => {
+  test("yields [key, value] pairs of the object's own, enumerable keys", () => {
     function A() {
       this.a = 1;
       this.b = 2;

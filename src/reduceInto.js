@@ -1,8 +1,8 @@
 import curry from "__curry__";
 
 const reduceInto = (reducer, accumulator, iterable) => {
-  for (const element of iterable) {
-    accumulator = reducer(accumulator, element);
+  for (const value of iterable) {
+    accumulator = reducer(accumulator, value);
   }
   return accumulator;
 };

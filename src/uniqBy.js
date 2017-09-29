@@ -2,11 +2,11 @@ import curry from "__curry__";
 
 function* uniqBy(iteratee, iterable) {
   const set = new Set();
-  for (const element of iterable) {
-    const mapped = iteratee(element);
+  for (const value of iterable) {
+    const mapped = iteratee(value);
     if (!set.has(mapped)) {
       set.add(mapped);
-      yield element;
+      yield value;
     }
   }
 }

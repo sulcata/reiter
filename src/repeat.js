@@ -1,7 +1,7 @@
 import curry from "__curry__";
 
-function* repeat(element) {
-  for (;;) yield element;
+function* repeat(value) {
+  for (;;) yield value;
 }
 
 export default curry(repeat);

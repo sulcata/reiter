@@ -6,9 +6,9 @@ const maxWith = (comparator, iterable) => {
   const { done, value } = iterator.next();
   if (done) return undefined;
   let max = value;
-  for (const element of iterator) {
-    if (comparator(element, max) > 0) {
-      max = element;
+  for (const value of iterator) {
+    if (comparator(value, max) > 0) {
+      max = value;
     }
   }
   return max;

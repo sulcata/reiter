@@ -7,11 +7,11 @@ const minBy = (iteratee, iterable) => {
   if (done) return undefined;
   let min = value;
   let iterateeMin = iteratee(min);
-  for (const element of iterator) {
-    const iterateeElement = iteratee(element);
-    if (iterateeElement < iterateeMin) {
-      min = element;
-      iterateeMin = iterateeElement;
+  for (const value of iterator) {
+    const iterateeValue = iteratee(value);
+    if (iterateeValue < iterateeMin) {
+      min = value;
+      iterateeMin = iterateeValue;
     }
   }
   return min;

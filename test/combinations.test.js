@@ -3,12 +3,12 @@ import * as matchers from "./matchers.js";
 
 expect.extend(matchers);
 
-describe("combinations(r, pool)", () => {
+describe("combinations(r, set)", () => {
   test("size 0 combinations are only the empty set", () => {
     expect(combinations(0, [1, 2])).toIterEqual([[]]);
   });
 
-  test("there are no combinations larger than the pool", () => {
+  test("there are no combinations larger than the set", () => {
     expect(combinations(4, [1, 2, 3])).toIterEqual([]);
   });
 

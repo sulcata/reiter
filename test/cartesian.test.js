@@ -3,7 +3,7 @@ import * as matchers from "./matchers.js";
 
 expect.extend(matchers);
 
-describe("cartesian(pool1, pool2)", () => {
+describe("cartesian(set1, set2)", () => {
   test("finds the cartesian product", () => {
     expect(cartesian([1, 2], [3, 4, 5])).toIterEqual([
       [1, 3],

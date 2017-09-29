@@ -1,12 +1,7 @@
 import curry from "__curry__";
-import shouldSpread from "./internal/shouldSpread.js";
 
-function* prepend(items, iterable) {
-  if (shouldSpread(items)) {
-    yield* items;
-  } else {
-    yield items;
-  }
+function* prepend(value, iterable) {
+  yield value;
   yield* iterable;
 }
 

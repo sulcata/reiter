@@ -1,8 +1,8 @@
 import curry from "__curry__";
 
-function* repeatN(n, element) {
+function* repeatN(n, value) {
   for (let i = 0; i < n; i++) {
-    yield element;
+    yield value;
   }
 }
 
