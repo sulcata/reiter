@@ -7,7 +7,6 @@ import iter from "./iter.js";
  * `iteratee` takes one argument: (value).
  *
  * @since 0.0.1
- * @curried
  * @param {function} iteratee Invoked per value.
  * @param {Iterable|Iterator} iterable The iterable.
  * @return {*} The first maximal value.

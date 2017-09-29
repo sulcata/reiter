@@ -4,7 +4,6 @@ import flattenDepth from "./flattenDepth.js";
  * Flattens `iterable` one level deep.
  *
  * @since 0.0.1
- * @curried
  * @param {Iterable|Iterator} iterable The iterable.
  * @returns {Iterator} `iterable` flattened.
  * @example

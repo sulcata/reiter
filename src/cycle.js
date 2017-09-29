@@ -4,7 +4,6 @@ import cycleN from "./cycleN";
  * Cycles through `iterable` infinitely.
  *
  * @since 0.0.1
- * @curried
  * @param {Iterable|Iterator} iterable The iterable.
  * @returns {Iterator} An infinite cycle of `iterable`.
  * @example

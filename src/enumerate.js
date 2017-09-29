@@ -3,7 +3,6 @@
  * from `0`. `[index, value]`
  *
  * @since 0.0.1
- * @curried
  * @param {Iterable|Iterator} iterable The iterable.
  * @returns {Iterator} `iterable` with indices.
  * @example

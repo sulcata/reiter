@@ -5,7 +5,6 @@ import maxBy from "./maxBy.js";
  * Computes the maximum value of `iterable`. Uses the first maximal value.
  *
  * @since 0.0.1
- * @curried
  * @param {Iterable|Iterator} iterable The iterable.
  * @return {*} The first maximal value.
  * @example

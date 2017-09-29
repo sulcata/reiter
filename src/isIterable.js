@@ -2,7 +2,6 @@
  * Checks if `value` is iterable or if it is iterator-like.
  *
  * @since 0.0.1
- * @curried
  * @param {*} value The value to check for inclusion.
  * @returns {boolean} `true` if `value` is iterable or if it is iterator-like, else `false`.
  * @example

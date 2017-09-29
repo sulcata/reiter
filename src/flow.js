@@ -3,7 +3,6 @@
  * the previous into the next.
  *
  * @since 0.0.1
- * @curried
  * @param {function[]} fns The function list.
  * @returns {function} The functional composition.
  * @example
