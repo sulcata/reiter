@@ -13,19 +13,18 @@ describe("permutations(r, set)", () => {
   });
 
   test("permutations are yielded in lexicographical order", () => {
-    expect(permutations(2, [
-        1,
-        2,
-        3
-      ])).toIterEqual([[1, 2], [1, 3], [2, 1], [2, 3], [3, 1], [3, 2]]);
+    expect(permutations(2, [1, 2, 3])).toIterEqual([
+      [1, 2],
+      [1, 3],
+      [2, 1],
+      [2, 3],
+      [3, 1],
+      [3, 2]
+    ]);
   });
 
   test("r == null yields permutations the same size as the iterable", () => {
-    expect(permutations(null, [
-        1,
-        2,
-        3
-      ])).toIterEqual([
+    expect(permutations(null, [1, 2, 3])).toIterEqual([
       [1, 2, 3],
       [1, 3, 2],
       [2, 1, 3],

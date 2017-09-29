@@ -5,7 +5,13 @@ expect.extend(matchers);
 
 describe("min(iterable)", () => {
   test("finds the first minimal value of an iterable", () => {
-    const array = [{ valueOf: () => 1 }, { valueOf: () => -10 }, { valueOf: () => 0 }, { valueOf: () => -10 }, { valueOf: () => -3 }];
+    const array = [
+      { valueOf: () => 1 },
+      { valueOf: () => -10 },
+      { valueOf: () => 0 },
+      { valueOf: () => -10 },
+      { valueOf: () => -3 }
+    ];
     expect(min(array)).toBe(array[1]);
   });
 

@@ -6,7 +6,13 @@ expect.extend(matchers);
 describe("minWith(comparator, iterable)", () => {
   test("finds the first minimal value of an iterable with the comparator", () => {
     const comparator = jest.fn((x, y) => y.value - x.value);
-    const array = [{ value: 1 }, { value: 10 }, { value: 0 }, { value: 10 }, { value: -3 }];
+    const array = [
+      { value: 1 },
+      { value: 10 },
+      { value: 0 },
+      { value: 10 },
+      { value: -3 }
+    ];
     expect(minWith(comparator, array)).toBe(array[1]);
     expect(comparator.mock.calls).toMatchObject([
       expect.arrayContaining([{ value: 1 }, { value: 10 }]),

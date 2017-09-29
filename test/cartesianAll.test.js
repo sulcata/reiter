@@ -5,11 +5,7 @@ expect.extend(matchers);
 
 describe("cartesianAll(sets)", () => {
   test("finds the cartesian product of all sets", () => {
-    expect(cartesianAll([
-        "a",
-        [1, 2],
-        [3, 4, 5]
-      ])).toIterEqual([
+    expect(cartesianAll(["a", [1, 2], [3, 4, 5]])).toIterEqual([
       ["a", 1, 3],
       ["a", 1, 4],
       ["a", 1, 5],

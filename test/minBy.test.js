@@ -6,7 +6,13 @@ expect.extend(matchers);
 describe("minBy(iteratee, iterable)", () => {
   test("finds the first minimal value of an iterable by the iteratee", () => {
     const getValue = jest.fn(object => object.value);
-    const array = [{ value: 1 }, { value: -10 }, { value: 0 }, { value: -10 }, { value: -3 }];
+    const array = [
+      { value: 1 },
+      { value: -10 },
+      { value: 0 },
+      { value: -10 },
+      { value: -3 }
+    ];
     expect(minBy(getValue, array)).toBe(array[1]);
     expect(getValue.mock.calls).toEqual(array.map(object => [object]));
   });

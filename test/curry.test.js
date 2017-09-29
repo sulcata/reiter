@@ -13,12 +13,14 @@ expect.extend(matchers);
 
 describe("curry(fn)", () => {
   test("supports placeholders and no args", () => {
-    expect(flow([
+    expect(
+      flow([
         range(0, _, 1)(_, _)(),
         combinations(2)(_),
         maxBy(pair => Math.hypot(...pair))(),
         product
-      ])(10)).toBe(72);
+      ])(10)
+    ).toBe(72);
   });
 
   test("includes extraneous arguments", () => {

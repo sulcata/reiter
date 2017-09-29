@@ -9,11 +9,7 @@ describe("combinationsWithReplacement(r, set)", () => {
   });
 
   test("combinations yielded in lexicographical order", () => {
-    expect(combinationsWithReplacement(4, [
-        1,
-        2,
-        3
-      ])).toIterEqual([
+    expect(combinationsWithReplacement(4, [1, 2, 3])).toIterEqual([
       [1, 1, 1, 1],
       [1, 1, 1, 2],
       [1, 1, 1, 3],

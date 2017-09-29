@@ -11,8 +11,8 @@ describe("toPairs(object)", () => {
     }
     A.prototype.c = 3;
     const object = new A();
-    expect([
-      ...toPairs(object)
-    ]).toEqual(expect.arrayContaining([["a", 1], ["b", 2]]));
+    expect([...toPairs(object)]).toEqual(
+      expect.arrayContaining([["a", 1], ["b", 2]])
+    );
   });
 });

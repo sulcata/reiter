@@ -9,10 +9,15 @@ describe("powerSet(set)", () => {
   });
 
   test("maximizes sets yielded before iterating to the next value", () => {
-    expect(powerSet([
-        1,
-        2,
-        3
-      ])).toIterEqual([[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]);
+    expect(powerSet([1, 2, 3])).toIterEqual([
+      [],
+      [1],
+      [2],
+      [1, 2],
+      [3],
+      [1, 3],
+      [2, 3],
+      [1, 2, 3]
+    ]);
   });
 });
