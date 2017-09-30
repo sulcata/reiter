@@ -3,6 +3,7 @@ import maxBy from "./maxBy.js";
 
 /**
  * Computes the maximum value of `iterable`. Uses the first maximal value.
+ * Returns `undefined` if `iterable` is empty.
  *
  * @since 0.0.1
  * @param {Iterable|Iterator} iterable The iterable.
