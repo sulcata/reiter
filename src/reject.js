@@ -1,20 +1,22 @@
+/** @module reiter/reject */
+
 import negate from "./internal/negate.js";
 import filter from "./filter.js";
 
 /**
  * Skips all values in `iterable` for which predicate returns a truthy value.
- * `predicate` takes one argument: (value)
+ * `predicate` is invoked with one argument: (value).
  *
  * @since 0.0.1
- * @curried
+ * @generator
+ * @function reject
  * @param {function} predicate Invoked per value.
- * @param {Iterable} iterable The iterable.
- * @returns {Iterator} `iterable` with values removed according to `predicate`.
+ * @param {ForOfIterable} iterable The iterable.
+ * @yields {*} The next value not passing `predicate`.
+ * @see [filter]{@link module:reiter/filter}
  * @example
  *
  * reiter.reject(n => n % 2, [1, 2, 3, 4])
  * // => 2, 4
  */
-export default function* reject(predicate, iterable) {
-  yield* filter(negate(predicate), iterable);
-}
+export default (predicate, iterable) => filter(negate(predicate), iterable);

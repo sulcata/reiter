@@ -9,6 +9,6 @@ describe("reiter(iterable)", () => {
     expect([...reiterable]).toEqual([1, 2, 3, 4]);
     expect([...reiterable]).toEqual([1, 2, 3, 4]);
     const reiterable2 = reiter(reiterable);
-    expect([...reiterable2]).toEqual([1, 2, 3, 4]);
+    expect(reiterable2).toBe(reiterable);
   });
 });

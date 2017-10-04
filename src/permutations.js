@@ -1,16 +1,33 @@
+/** @module reiter/permutations */
+
 import curry from "__curry__";
 import chain from "./chain.js";
 import iter from "./iter.js";
+import next from "./next.js";
 import tee from "./tee.js";
 
-function* permutations(r, pool) {
+/**
+ * Yields all r-permutations of `set`. Ordered pairs are yielded in
+ * lexicographical order according to the iteration order.
+ *
+ * @since 0.0.1
+ * @generator
+ * @function permutations
+ * @param {?number} r The length of the combinations.
+ * @param {ForOfIterable} set The set of elements.
+ * @yields {Array} The next r-permutation of `set`.
+ * @example
+ *
+ * reiter.permutations(2, [1, 2, 3])
+ */
+export default curry(function* permutations(r, pool) {
   if (r === 0) {
     yield [];
   } else {
     const usedValues = [];
     let iterator = iter(pool);
     let tempIterator;
-    let { done, value } = iterator.next();
+    let { done, value } = next(iterator);
     if (done && r == null) {
       yield [];
     } else {
@@ -23,10 +40,8 @@ function* permutations(r, pool) {
           yield tuple;
         }
         usedValues.push(value);
-        ({ done, value } = iterator.next());
+        ({ done, value } = next(iterator));
       }
     }
   }
-}
-
-export default curry(permutations);
+});

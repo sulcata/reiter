@@ -54,7 +54,6 @@ module.exports = {
     "no-multi-assign": "error",
     "no-multi-str": "error",
     "no-negated-condition": "error",
-    "no-nested-ternary": "error",
     "no-new": "error",
     "no-new-func": "error",
     "no-new-object": "error",
@@ -109,8 +108,7 @@ module.exports = {
     {
       files: [src],
       env: { node: false },
-      globals: { process: false },
-      rules: { "require-jsdoc": "error" }
+      globals: { process: false }
     },
     {
       files: [test],

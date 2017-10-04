@@ -1,23 +1,25 @@
+/** @module reiter/filter */
+
 import curry from "__curry__";
 
 /**
  * Skips all values in `iterable` for which predicate returns a falsey value.
- * `predicate` takes one argument: (value)
+ * `predicate` is invoked with one argument: (value)
  *
  * @since 0.0.1
- * @curried
+ * @generator
+ * @function filter
  * @param {function} predicate Invoked per value.
- * @param {Iterable|Iterator} iterable The iterable.
- * @returns {Iterator} `iterable` with values removed according to `predicate`.
+ * @param {ForOfIterable} iterable The iterable.
+ * @yields {*} The next value passing `predicate`.
+ * @see [reject]{@link module:reiter/reject}
  * @example
  *
  * reiter.filter(n => n % 2, [1, 2, 3, 4])
  * // => 1, 3
  */
-function* filter(predicate, iterable) {
+export default curry(function*(predicate, iterable) {
   for (const value of iterable) {
     if (predicate(value)) yield value;
   }
-}
-
-export default curry(filter);
+});

@@ -1,13 +1,15 @@
+/** @module reiter/forEach */
+
 import curry from "__curry__";
 
 /**
- * Calls `iteratee` for each value of `iterable`. `iteratee` takes one
- * argument: (value).
+ * Calls `iteratee` for each value of `iterable`. `iteratee` is invoked
+ * with one argument: (value).
  *
  * @since 0.0.1
- * @curried
+ * @function forEach
  * @param {function} iteratee Invoked per value.
- * @param {Iterable|Iterator} iterable The iterable.
+ * @param {ForOfIterable} iterable The iterable.
  * @returns {void}
  * @example
  *
@@ -16,10 +18,8 @@ import curry from "__curry__";
  * // => 2
  * // => 3
  */
-const forEach = (iteratee, iterable) => {
+export default curry((iteratee, iterable) => {
   for (const value of iterable) {
     iteratee(value);
   }
-};
-
-export default curry(forEach);
+});

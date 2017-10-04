@@ -1,3 +1,5 @@
+/** @module reiter/cartesian */
+
 import curry from "__curry__";
 
 /**
@@ -5,10 +7,12 @@ import curry from "__curry__";
  * yielded in lexicographical order according to the iteration order.
  *
  * @since 0.0.1
- * @curried
- * @param {Iterable|Iterator} set1 The first set of elements.
- * @param {Iterable|Iterator} set2 The second set of elements.
- * @returns {Iterator} All ordered pairs between `set1` and `set2`.
+ * @generator
+ * @function cartesian
+ * @param {ForOfIterable} set1 The first set of elements.
+ * @param {ForOfIterable} set2 The second set of elements.
+ * @yields {Array<*, *>} The next ordered pair between `set1` and `set2`.
+ * @see [cartesianAll]{@link module:reiter/cartesianAll}
  * @example
  *
  * reiter.cartesian("abc", [1, 2, 3])
@@ -16,12 +20,10 @@ import curry from "__curry__";
  * //    ["b", 1], ["b", 2], ["b", 3],
  * //    ["c", 1], ["c", 2], ["c", 3]
  */
-function* cartesian(set1, set2) {
+export default curry(function*(set1, set2) {
   for (const value1 of set1) {
     for (const value2 of set2) {
       yield [value1, value2];
     }
   }
-}
-
-export default curry(cartesian);
+});

@@ -1,7 +1,25 @@
+/** @module reiter/partition */
+
 import curry from "__curry__";
 import iter from "./iter.js";
+import next from "./next.js";
 
-function* partition(iteratee, iterable) {
+/**
+ * Yields groups of elements in the order they're found, based on the values
+ * returned by `iteratee`. `iteratee` is invoked with one argument: (value).
+ *
+ * @since 0.0.1
+ * @generator
+ * @function partition
+ * @param {function} iteratee Invoked per value.
+ * @param {Iterator} iterator The iterator.
+ * @yields {Iterator} The next group of elements.
+ * @example
+ *
+ * reiter.partition(n => n % 2, [1, 2, 3, 4, 5, 6])
+ * // => [1, 3, 5], [2, 4, 6]
+ */
+export default curry(function*(iteratee, iterable) {
   const iterator = iter(iterable);
   const partitions = new Map();
   const partitionsToYield = [];
@@ -21,7 +39,7 @@ function* partition(iteratee, iterable) {
   function* partitionGenerator(partition) {
     for (;;) {
       if (partition.length === 0) {
-        const { done, value } = iterator.next();
+        const { done, value } = next(iterator);
         if (done) break;
         const mappedValue = iteratee(value);
         getPartition(mappedValue).push(value);
@@ -31,7 +49,7 @@ function* partition(iteratee, iterable) {
     }
   }
 
-  let { done, value } = iterator.next();
+  let { done, value } = next(iterator);
   while (!done) {
     const mappedValue = iteratee(value);
     getPartition(mappedValue).push(value);
@@ -40,8 +58,6 @@ function* partition(iteratee, iterable) {
       yield* partitionsToYield;
       partitionsToYield.length = 0;
     }
-    ({ done, value } = iterator.next());
+    ({ done, value } = next(iterator));
   }
-}
-
-export default curry(partition);
+});

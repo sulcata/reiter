@@ -1,24 +1,29 @@
+/** @module reiter/maxBy */
+
 import curry from "__curry__";
 import iter from "./iter.js";
+import next from "./next.js";
 
 /**
- * Computes the maximum value of `iterable`. Uses the first maximal value by
- * using the iteratee on each value to generate the ranking criteria. Returns
- * `undefined` if `iterable` is empty. `iteratee` takes one argument: (value).
+ * Computes the maximum value of `iterable`. Uses the first maximal value
+ * by `iteratee` generating the ranking criteria. Returns `undefined` if
+ * `iterable` is empty. `iteratee` is invoked with one argument: (value).
  *
  * @since 0.0.1
- * @curried
+ * @function maxBy
  * @param {function} iteratee Invoked per value.
- * @param {Iterable|Iterator} iterable The iterable.
- * @return {*} The first maximal value.
+ * @param {ForOfIterable} iterable The iterable.
+ * @returns {*} The first maximal value.
+ * @see [max]{@link module:reiter/max}
+ * @see [maxWith]{@link module:reiter/maxWith}
  * @example
  *
  * reiter.maxBy(Math.abs, [1, 2, 3, -4, 3, 1])
  * // => -4
  */
-const maxBy = (iteratee, iterable) => {
+export default curry((iteratee, iterable) => {
   const iterator = iter(iterable);
-  const { done, value } = iterator.next();
+  const { done, value } = next(iterator);
   if (done) return undefined;
   let max = value;
   let iterateeMax = iteratee(max);
@@ -30,6 +35,4 @@ const maxBy = (iteratee, iterable) => {
     }
   }
   return max;
-};
-
-export default curry(maxBy);
+});

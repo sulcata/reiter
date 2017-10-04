@@ -1,3 +1,5 @@
+/** @module reiter/dropUntil */
+
 import curry from "__curry__";
 import negate from "./internal/negate.js";
 import dropWhile from "./dropWhile.js";
@@ -7,16 +9,17 @@ import dropWhile from "./dropWhile.js";
  * a truthy value. `predicate` is invoked with one argument: (value).
  *
  * @since 0.0.1
- * @curried
+ * @generator
+ * @function dropUntil
  * @param {function} predicate Invoked per value.
- * @param {Iterable|Iterator} iterable The iterable.
- * @returns {Iterator} `iterable` with values dropped according to `predicate`.
+ * @param {ForOfIterable} iterable The iterable.
+ * @yields {*} The next value not dropped by `predicate`.
+ * @see [dropWhile]{@link module:reiter/dropWhile}
  * @example
  *
  * reiter.dropUntil(x => x > 0, [-1, 0, 1, 2, -1, 3])
  * // => 1, 2, -1, 3
  */
-const dropUntil = (predicate, iterable) =>
-  dropWhile(negate(predicate), iterable);
-
-export default curry(dropUntil);
+export default curry((predicate, iterable) =>
+  dropWhile(negate(predicate), iterable)
+);

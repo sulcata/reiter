@@ -1,9 +1,12 @@
+/** @module reiter/isIterable */
+
 /**
  * Checks if `value` is iterable or if it is iterator-like.
  *
  * @since 0.0.1
+ * @function isIterable
  * @param {*} value The value to check for inclusion.
- * @returns {boolean} `true` if `value` is iterable or if it is iterator-like, else `false`.
+ * @returns {boolean} `true` if `value` is iterable or if it is iterator-like.
  * @example
  *
  * reiter.isIterable("abc")
@@ -24,4 +27,7 @@
  * reiter.isIterable(undefined)
  * // => false
  */
-export { default } from "./internal/isIterable.js";
+export default value =>
+  value != null &&
+  (typeof value[Symbol.iterator] === "function" ||
+    typeof value.next === "function");

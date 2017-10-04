@@ -5,9 +5,10 @@
   "module": "src/index.js",
   "license": "MIT",
   "scripts": {
+    "doc": "jsdoc src --readme README.md --destination docs",
     "test": "jest --coverage",
     "test:lodash": "jest --coverage --config jest.lodash.config.js",
-    "build": "node ./build.js",
+    "build": "node build.js",
     "lint": "prettier --ignore-path '.gitignore' --write -- '**/*.js' && eslint --ignore-path '.gitignore' -- '**/*.js'"
   },
   "devDependencies": {
@@ -22,6 +23,7 @@
     "fs-extra": "^4.0.2",
     "jest": "^21.1.0",
     "jest-diff": "^21.1.0",
+    "jsdoc": "^3.5.5",
     "lodash": "^4.17.4",
     "prettier": "^1.7.2",
     "rollup": "^0.50.0",

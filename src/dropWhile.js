@@ -1,3 +1,5 @@
+/** @module reiter/dropWhile */
+
 import curry from "__curry__";
 import iter from "./iter.js";
 
@@ -6,16 +8,18 @@ import iter from "./iter.js";
  * a falsey value. `predicate` is invoked with one argument: (value).
  *
  * @since 0.0.1
- * @curried
+ * @generator
+ * @function dropWhile
  * @param {function} predicate Invoked per value.
- * @param {Iterable|Iterator} iterable The iterable.
- * @returns {Iterator} `iterable` with values dropped according to `predicate`.
+ * @param {ForOfIterable} iterable The iterable.
+ * @yields {*} The next value not dropped by `predicate`.
+ * @see [dropUntil]{@link module:reiter/dropUntil}
  * @example
  *
  * reiter.dropWhile(x => x > 0, [1, 2, 0, -1, 1, 3])
  * // => 0, -1, 1, 3
  */
-function* dropWhile(predicate, iterable) {
+export default curry(function*(predicate, iterable) {
   const iterator = iter(iterable);
   for (const value of iterator) {
     if (!predicate(value)) {
@@ -24,6 +28,4 @@ function* dropWhile(predicate, iterable) {
     }
   }
   yield* iterator;
-}
-
-export default curry(dropWhile);
+});

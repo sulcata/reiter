@@ -1,3 +1,47 @@
+/**
+ * The resulting object of advancing the iterator. `{ done: true }` if the
+ * iterator has reached the end, otherwise `{ value }`.
+ * @typedef {Object} IteratorResult
+ * @property {boolean} done Truthy if the iterator has reached the end.
+ * @property {*} value The value yielded by the iterator.
+ * @see [Iteration protocols]{@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols}
+ */
+
+/**
+ * The next function of an EcmaScript Iterator.
+ * @callback NextFunction
+ * @returns {IteratorResult} The result of advancing the iterator.
+ * @see [Iteration protocols]{@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols}
+ */
+
+/**
+ * An EcmaScript Iterator.
+ * @typedef {Object} Iterator
+ * @property {NextFunction} next Advances the iterator and returns the result.
+ * @see [Iteration protocols]{@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols}
+ */
+
+/**
+ * Gets the iterator for an iterable object.
+ * @callback IteratorFunction
+ * @returns {Iterator} The iterator for an iterable.
+ * @see [Iteration protocols]{@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols}
+ */
+
+/**
+ * An EcmaScript Iterable object.
+ * @typedef {Object} Iterable
+ * @property {IteratorFunction} @@iterator The iterator generating function.
+ * @see [Iteration protocols]{@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols}
+ */
+
+/**
+ * A value which is iterable by a `for...of` statement.
+ * @typedef {Iterable|Iterator} ForOfIterable
+ * @see [for...of statement]{@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of}
+ * @see [Iteration protocols]{@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols}
+ */
+
 export { default as accumulate } from "./accumulate.js";
 export { default as append } from "./append.js";
 export { default as cartesian } from "./cartesian.js";

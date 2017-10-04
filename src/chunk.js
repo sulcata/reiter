@@ -1,3 +1,5 @@
+/** @module reiter/chunk */
+
 import curry from "__curry__";
 
 /**
@@ -6,16 +8,17 @@ import curry from "__curry__";
  * values will be yielded at the end.
  *
  * @since 0.0.1
- * @curried
+ * @generator
+ * @function chunk
  * @param {number} chunkSize The size of each chunk.
- * @param {Iterable|Iterator} iterable The iterable to be chunked.
- * @returns {Iterator} `iterable` in chunks of size `chunkSize`.
+ * @param {ForOfIterable} iterable The iterable to be chunked.
+ * @yields {Array} The next chunk of size `chunkSize` from `iterable`.
  * @example
  *
  * reiter.chunk(2, [1, 2, 3, 4, 5])
  * // => [1, 2], [3, 4], [5]
  */
-function* chunk(chunkSize, iterable) {
+export default curry(function*(chunkSize, iterable) {
   let currentChunk = [];
   for (const value of iterable) {
     currentChunk.push(value);
@@ -27,6 +30,4 @@ function* chunk(chunkSize, iterable) {
   if (currentChunk.length > 0) {
     yield currentChunk;
   }
-}
-
-export default curry(chunk);
+});

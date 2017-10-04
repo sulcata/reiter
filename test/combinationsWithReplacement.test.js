@@ -8,6 +8,21 @@ describe("combinationsWithReplacement(r, set)", () => {
     expect(combinationsWithReplacement(0, [1, 2])).toIterEqual([[]]);
   });
 
+  test("r == null yields the only combination of the same length as set", () => {
+    expect(combinationsWithReplacement(null, [1, 2, 3])).toIterEqual([
+      [1, 1, 1],
+      [1, 1, 2],
+      [1, 1, 3],
+      [1, 2, 2],
+      [1, 2, 3],
+      [1, 3, 3],
+      [2, 2, 2],
+      [2, 2, 3],
+      [2, 3, 3],
+      [3, 3, 3]
+    ]);
+  });
+
   test("combinations yielded in lexicographical order", () => {
     expect(combinationsWithReplacement(4, [1, 2, 3])).toIterEqual([
       [1, 1, 1, 1],

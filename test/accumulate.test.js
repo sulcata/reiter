@@ -3,7 +3,7 @@ import * as matchers from "./matchers.js";
 
 expect.extend(matchers);
 
-describe("accumulate(iteratee, iterable)", () => {
+describe("accumulate(reducer, iterable)", () => {
   test("empty iterable", () => {
     const add = jest.fn((a, b) => a + b);
     expect(accumulate(add, [])).toIterEqual([]);

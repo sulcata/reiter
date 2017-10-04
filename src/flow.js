@@ -1,8 +1,11 @@
+/** @module reiter/flow */
+
 /**
  * Composes a list of functions, piping the output of
  * the previous into the next.
  *
  * @since 0.0.1
+ * @function flow
  * @param {function[]} fns The function list.
  * @returns {function} The functional composition.
  * @example

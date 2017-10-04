@@ -1,13 +1,11 @@
+/** @module reiter/cartesianAll */
+
 import map from "./map.js";
 import tee from "./tee.js";
 import unzip from "./unzip.js";
 
-/** @private */
-function* splitIterables(iterables) {
-  yield* unzip(map(tee(2), iterables));
-}
+const splitIterables = iterables => unzip(map(tee(2), iterables));
 
-/** @private */
 function* _cartesianAll(sets) {
   if (sets.length === 1) {
     yield* map(Array.of, sets[0]);
@@ -29,14 +27,15 @@ function* _cartesianAll(sets) {
  * yielded in lexicographical order according to the iteration order.
  *
  * @since 0.0.1
- * @param {Iterable|Iterator} sets The list of sets.
- * @returns {Iterator} All ordered pairs in the cartesian product of `sets`
+ * @generator
+ * @function cartesianAll
+ * @param {ForOfIterable<ForOfIterable>} sets The list of sets.
+ * @yields {Array} The next ordered pair in the cartesian product of `sets`.
+ * @see [cartesian]{@link module:reiter/cartesian}
  * @example
  *
- * reiter.cartesian([[1, 2], [3, 4], [5, 6]])
+ * reiter.cartesianAll([[1, 2], [3, 4], [5, 6]])
  * // => [1, 3, 5], [1, 3, 6], [1, 4, 5], [1, 4, 6]
  * //    [2, 3, 5], [2, 3, 6], [2, 4, 5], [2, 4, 6]
  */
-export default function* cartesianAll(sets) {
-  yield* _cartesianAll([...sets]);
-}
+export default sets => _cartesianAll([...sets]);

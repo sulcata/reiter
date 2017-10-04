@@ -1,7 +1,19 @@
-import curry from "__curry__";
+/** @module reiter/repeat */
 
-function* repeat(value) {
-  for (;;) yield value;
-}
+import repeatN from "./repeatN.js";
 
-export default curry(repeat);
+/**
+ * Yields `value` repeated infinitely.
+ *
+ * @since 0.0.1
+ * @generator
+ * @function repeat
+ * @param {*} value The value.
+ * @yields {*} `value`.
+ * @see [repeatN]{@link module:reiter/repeatN}
+ * @example
+ *
+ * reiter.repeat(1)
+ * // => 1, 1, 1, ...
+ */
+export default repeatN(Infinity);
