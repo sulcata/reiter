@@ -83,7 +83,6 @@ module.exports = {
     "no-void": "error",
     "no-warning-comments": "error",
     "no-with": "error",
-    "nonblock-statement-body-position": "error",
     "object-shorthand": "error",
     "operator-assignment": "error",
     "prefer-arrow-callback": "error",
