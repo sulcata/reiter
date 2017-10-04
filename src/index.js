@@ -42,6 +42,13 @@
  * @see [Iteration protocols]{@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols}
  */
 
+/**
+ * A value which has a non-negative, integral `length` property, along with
+ * the appropriate indices.
+ * @typedef {Object} ArrayLike
+ * @property {number} length A safe, non-negative integer.
+ */
+
 export { default as accumulate } from "./accumulate.js";
 export { default as append } from "./append.js";
 export { default as cartesian } from "./cartesian.js";
@@ -66,8 +73,10 @@ export { default as flattenDeep } from "./flattenDeep.js";
 export { default as flattenDepth } from "./flattenDepth.js";
 export { default as flow } from "./flow.js";
 export { default as forEach } from "./forEach.js";
+export { default as fromArrayLike } from "./fromArrayLike.js";
 export { default as fromPairs } from "./fromPairs.js";
 export { default as includes } from "./includes.js";
+export { default as isArrayLike } from "./isArrayLike.js";
 export { default as isIterable } from "./isIterable.js";
 export { default as iter } from "./iter.js";
 export { default as map } from "./map.js";
