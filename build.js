@@ -8,13 +8,12 @@ const fs = require("fs-extra");
 const _ = require("lodash/fp");
 
 const extendInputConfig = _.merge({ input: "./src/index.js" });
-
 const extendOutputConfig = _.merge({ name: "reiter" });
 
 const formats = [
   {
     format: "es",
-    extension: "mjs"
+    extension: "esm.js"
   },
   {
     format: "cjs",
@@ -56,15 +55,16 @@ async function build({ curryOptions, formatOptions }) {
     { mangle: { topLevel: true } },
     { sourceMaps: true, inputSourceMap: map }
   );
-  const sourceFile = curryOptions.name
-    ? `reiter.${curryOptions.name}.${formatOptions.extension}`
-    : `reiter.${formatOptions.extension}`;
+  const sourceFile = `index.${formatOptions.extension}`;
   const mapFile = `${sourceFile}.map`;
   const sourceMap = convert.fromObject(minifiedResult.map);
+  const sourceOutDir = curryOptions.name
+    ? path.join(__dirname, "dist", curryOptions.name)
+    : path.join(__dirname, "dist");
   return Promise.all([
-    fs.writeFile(path.join(__dirname, "dist", mapFile), sourceMap.toJSON()),
-    fs.writeFile(
-      path.join(__dirname, "dist", sourceFile),
+    fs.outputFile(path.join(sourceOutDir, mapFile), sourceMap.toJSON()),
+    fs.outputFile(
+      path.join(sourceOutDir, sourceFile),
       minifiedResult.code + "\n" + convert.generateMapFileComment(mapFile)
     )
   ]);
@@ -77,7 +77,10 @@ async function buildAll() {
       builds.push(build({ curryOptions, formatOptions }));
     }
   }
-  await Promise.all(builds);
+  await Promise.all([
+    ...builds,
+    fs.copy("./package.json", "./dist/package.json")
+  ]);
 }
 
 buildAll().catch(error => {

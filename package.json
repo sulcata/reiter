@@ -1,8 +1,8 @@
 {
   "name": "reiter",
   "version": "0.0.2",
-  "main": "dist/reiter.min.js",
-  "module": "src/index.js",
+  "main": "./index.js",
+  "module": "./index.mjs",
   "license": "MIT",
   "scripts": {
     "doc": "jsdoc src --readme README.md --destination docs",

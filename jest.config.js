@@ -15,7 +15,8 @@ const config = {
     "^__curry__$": "<rootDir>/src/internal/curry.js",
     "^reiter$": "<rootDir>/src/index.js",
     "^reiter/(.+)$": "<rootDir>/src/$1"
-  }
+  },
+  modulePathIgnorePatterns: ["<rootDir>/dist/"]
 };
 
 module.exports = config;
