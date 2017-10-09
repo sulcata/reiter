@@ -1,4 +1,4 @@
-import curry from "reiter/internal/curry.js";
+import curry from "__curry__";
 import {
   combinations,
   flow,

@@ -60,6 +60,7 @@ export {
   default as combinationsWithReplacement
 } from "./combinationsWithReplacement.js";
 export { default as count } from "./count.js";
+export { default as curry } from "./curry.js";
 export { default as cycle } from "./cycle.js";
 export { default as cycleN } from "./cycleN.js";
 export { default as dropUntil } from "./dropUntil.js";
