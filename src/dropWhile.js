@@ -12,7 +12,8 @@ import iter from "./iter.js";
  * @function dropWhile
  * @param {function} predicate Invoked per value.
  * @param {ForOfIterable} iterable The iterable.
- * @yields {*} The next value not dropped by `predicate`.
+ * @yields {*} The next value not dropped from `iterable` by `predicate`.
+ * @see [drop]{@link module:reiter/drop}
  * @see [dropUntil]{@link module:reiter/dropUntil}
  * @example
  *
