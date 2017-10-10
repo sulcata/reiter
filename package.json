@@ -6,6 +6,7 @@
   "license": "MIT",
   "scripts": {
     "doc": "jsdoc src --readme README.md --destination docs",
+    "test:all": "yarn test && yarn test:lodash",
     "test": "jest --coverage",
     "test:lodash": "jest --coverage --config jest.lodash.config.js",
     "build": "node build.js",
