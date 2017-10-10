@@ -7,10 +7,16 @@ node_js:
   - "8"
 cache: yarn
 deploy:
-  provider: releases
-  api_key: $GITHUB_TOKEN
-  file_glob: true
-  file: dist/*
-  skip_cleanup: true
-  on:
-    tags: true
+  - provider: releases
+    api_key: $GITHUB_TOKEN
+    file_glob: true
+    file: dist/*
+    skip_cleanup: true
+    on:
+      tags: true
+  - povider: pages
+    github_token: $GITHUB_TOKEN
+    local_dir: docs
+    skip_cleanup: true
+    on:
+      tags: true
