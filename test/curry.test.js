@@ -1,11 +1,11 @@
-import curry from "__curry__";
 import {
+  _,
   combinations,
   compose,
+  curry,
   maxBy,
   product,
-  range,
-  placeholder as _
+  range
 } from "reiter";
 import * as matchers from "./matchers.js";
 

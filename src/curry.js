@@ -29,4 +29,4 @@
  * add(reiter.placeholder, 2)(1)
  * // => 0.5
  */
-export { placeholder as default } from "__curry__";
+export { default } from "__curry__";
