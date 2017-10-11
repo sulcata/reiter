@@ -5,55 +5,25 @@ import next from "./next.js";
 
 const privateData = new WeakMap();
 
-/**
- * Saves the values of an `iterable` or `iterator` to allow
- * it to be iterated more than once.
- *
- * @since 0.0.1
- * @private
- * @class
- * @param {ForOfIterable} iterable The iterable.
- * @example
- *
- * const iterator = reiter.iter([1, 2, 3])
- * const reiterator = reiter.reiter(iterator)
- * reiter.chain(reiterator, reiterator)
- * // => 1, 2, 3, 1, 2, 3
- */
 function Reiterable(iterable) {
   privateData.set(this, {
     iterator: iter(iterable),
-    head: null
+    head: { next: null }
   });
 }
 
-const assureNode = (node, iterator) => {
-  if (node !== null) return node;
-  const { done, value } = next(iterator);
-  return done ? null : { value, next: null };
-};
-
-/**
- * Yields the values of the iterable which the `Reiterable`
- * was constructed with.
- *
- * @since 0.0.1
- * @generator
- * @yields {*} The values of the underlying iterable.
- * @example
- *
- * [...reiter.reiter([1, 2, 3])]
- * // => [1, 2, 3]
- */
 Reiterable.prototype[Symbol.iterator] = function*() {
   const $this = privateData.get(this);
   const iterator = $this.iterator;
-  $this.head = assureNode($this.head, iterator);
-  let current = $this.head;
-  while (current) {
-    yield current.value;
-    current.next = assureNode(current.next, iterator);
-    current = current.next;
+  let node = $this.head;
+  for (;;) {
+    if (node.next === null) {
+      const { done, value } = next(iterator);
+      if (done) break;
+      node.next = { next: null, value };
+    }
+    node = node.next;
+    yield node.value;
   }
 };
 
@@ -78,8 +48,8 @@ Reiterable.prototype[Symbol.iterator] = function*() {
  * // => 1, 2, 3
  *
  * const iterator = reiter.iter([1, 2, 3])
- * const reiterator = reiter.reiter(iterator)
- * reiter.chain(reiterator, reiterator)
+ * const reiterable = reiter.reiter(iterator)
+ * reiter.chain(reiterable, reiterable)
  * // => 1, 2, 3, 1, 2, 3
  */
 export default iterable =>

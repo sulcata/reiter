@@ -4,16 +4,18 @@ import curry from "__curry__";
 import iter from "./iter.js";
 import next from "./next.js";
 
-function* generator(copy, copies, iterator) {
+const copyToInfo = new WeakMap();
+
+function* makeCopy(info) {
+  let { baseIterator, node } = info;
   for (;;) {
-    if (copy.length === 0) {
-      const { done, value } = next(iterator);
+    if (node.next === null) {
+      const { done, value } = next(baseIterator);
       if (done) break;
-      for (const c of copies) {
-        c.push(value);
-      }
+      node.next = { next: null, value };
     }
-    yield copy.shift();
+    node = info.node = node.next;
+    yield node.value;
   }
 }
 
@@ -42,9 +44,18 @@ function* generator(copy, copies, iterator) {
  * // => 1, 2, 3
  */
 export default curry((n, iterable) => {
-  const iterator = iter(iterable);
-  const copies = Array(n)
-    .fill(null)
-    .map(() => []);
-  return copies.map(copy => generator(copy, copies, iterator));
+  const baseIterator = iter(iterable);
+  const emptyHead = { next: null };
+  const baseInfo = copyToInfo.get(baseIterator) || {
+    baseIterator,
+    node: emptyHead
+  };
+  const copies = [];
+  for (let i = 0; i < n; i++) {
+    const info = Object.assign({}, baseInfo);
+    const copy = makeCopy(info);
+    copyToInfo.set(copy, info);
+    copies.push(copy);
+  }
+  return copies;
 });

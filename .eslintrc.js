@@ -51,7 +51,6 @@ module.exports = {
     "no-lonely-if": "error",
     "no-loop-func": "error",
     "no-mixed-requires": "error",
-    "no-multi-assign": "error",
     "no-multi-str": "error",
     "no-negated-condition": "error",
     "no-new": "error",

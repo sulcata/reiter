@@ -1,7 +1,6 @@
 /** @module reiter/compose */
 
 import reiter from "./reiter.js";
-import next from "./next.js";
 
 /**
  * Composes a list of functions, piping the output of the previous into
