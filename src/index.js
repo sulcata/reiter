@@ -76,7 +76,7 @@ export { default as findLast } from "./findLast.js";
 export { default as flatten } from "./flatten.js";
 export { default as flattenDeep } from "./flattenDeep.js";
 export { default as flattenDepth } from "./flattenDepth.js";
-export { default as flow } from "./flow.js";
+export { default as compose } from "./compose.js";
 export { default as forEach } from "./forEach.js";
 export { default as fromArrayLike } from "./fromArrayLike.js";
 export { default as fromPairs } from "./fromPairs.js";

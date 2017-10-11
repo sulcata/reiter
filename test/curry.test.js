@@ -1,7 +1,7 @@
 import curry from "__curry__";
 import {
   combinations,
-  flow,
+  compose,
   maxBy,
   product,
   range,
@@ -14,7 +14,7 @@ expect.extend(matchers);
 describe("curry(fn)", () => {
   test("supports placeholders and no args", () => {
     expect(
-      flow([
+      compose([
         range(0, _, 1)(_, _)(),
         combinations(2)(_),
         maxBy(pair => Math.hypot(...pair))(),
