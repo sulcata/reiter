@@ -36,7 +36,9 @@ so builds using Lodash's curry are available. The package exports `curry`
 and `placeholder`. `_` is an alias of `placeholder`. A `compose` function
 is included to aid in composing methods together.
 
-## Methods
+## Documentation
+More detailed documentation can be found [here](docs). Below is a short
+overview organized into groups.
 
 ### General
 - `accumulate`
@@ -120,3 +122,4 @@ is included to aid in composing methods together.
 - `placeholder` / `_`
 
 [mdn]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols
+[docs]: https://sulcata.github.io/reiter/
