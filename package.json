@@ -1,9 +1,28 @@
 {
   "name": "reiter",
+  "author": "sulcata",
   "version": "0.1.1",
+  "license": "MIT",
+  "description": "Methods for iterators",
+  "keywords": [
+    "iter",
+    "reiter",
+    "iteration",
+    "iterable",
+    "reiterable",
+    "combinatorial"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sulcata/reiter/"
+  },
+  "bugs": {"url": "https://github.com/sulcata/reiter/issues"},
+  "files": [
+    "dist/**/*.js",
+    "src/**/*.js"
+  ],
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
-  "license": "MIT",
   "scripts": {
     "doc": "jsdoc src --readme README.md --destination docs",
     "test:all": "yarn test && yarn test:lodash",
