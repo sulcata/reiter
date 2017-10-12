@@ -11,6 +11,9 @@ script:
   - yarn doc
   - yarn build
 deploy:
+  - provider: npm
+    email: sulcata@users.noreply.github.com
+    api_key: $NPM_TOKEN
   - provider: releases
     api_key: $GITHUB_TOKEN
     file_glob: true
