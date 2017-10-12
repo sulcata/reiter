@@ -18,11 +18,10 @@
   },
   "bugs": {"url": "https://github.com/sulcata/reiter/issues"},
   "files": [
-    "dist/**/*.js",
-    "src/**/*.js"
+    "dist/**/*.js"
   ],
   "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
+  "module": "./dist/index.esm.js",
   "scripts": {
     "doc": "jsdoc src --readme README.md --destination docs",
     "test:all": "yarn test && yarn test:lodash",
