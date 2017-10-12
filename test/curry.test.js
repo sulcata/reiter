@@ -1,12 +1,4 @@
-import {
-  _,
-  combinations,
-  compose,
-  curry,
-  maxBy,
-  product,
-  range
-} from "reiter";
+import { _, combinations, compose, curry, maxBy, product, range } from "reiter";
 import * as matchers from "./matchers.js";
 
 expect.extend(matchers);
