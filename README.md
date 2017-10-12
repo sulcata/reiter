@@ -3,7 +3,7 @@
 [![npm](https://img.shields.io/npm/v/reiter.svg)]()
 [![license](https://img.shields.io/github/license/sulcata/reiter.svg)]()
 
-Various utilities for working with [ES6 iterators and iterables](mdn).
+Various utilities for working with [Iterators and Iterables][mdn].
 
 Building on the iterator and iterable protocols, this library aims to
 provide various utilities for working with iterators.
@@ -104,7 +104,7 @@ of reiter, one should not mutate the collections until after all iterators
 are not in-use. Mutating the collections could result in undefined behavior.
 
 ## Documentation
-More detailed documentation can be found [here](docs). Below is a short
+More detailed documentation can be found [here][docs]. Below is a short
 overview organized into groups.
 
 ### General
