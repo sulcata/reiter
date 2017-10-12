@@ -77,10 +77,7 @@ async function buildAll() {
       builds.push(build({ curryOptions, formatOptions }));
     }
   }
-  await Promise.all([
-    ...builds,
-    fs.copy("./package.json", "./dist/package.json")
-  ]);
+  await Promise.all(builds);
 }
 
 buildAll().catch(error => {
