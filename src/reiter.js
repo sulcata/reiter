@@ -5,27 +5,29 @@ import next from "./next.js";
 
 const privateData = new WeakMap();
 
-function Reiterable(iterable) {
-  privateData.set(this, {
-    iterator: iter(iterable),
-    head: { next: null }
-  });
-}
-
-Reiterable.prototype[Symbol.iterator] = function*() {
-  const $this = privateData.get(this);
-  const iterator = $this.iterator;
-  let node = $this.head;
-  for (;;) {
-    if (node.next === null) {
-      const { done, value } = next(iterator);
-      if (done) break;
-      node.next = { next: null, value };
-    }
-    node = node.next;
-    yield node.value;
+class Reiterable {
+  constructor(iterable) {
+    privateData.set(this, {
+      iterator: iter(iterable),
+      head: { next: null }
+    });
   }
-};
+
+  *[Symbol.iterator]() {
+    const $this = privateData.get(this);
+    const iterator = $this.iterator;
+    let node = $this.head;
+    for (;;) {
+      if (node.next === null) {
+        const { done, value } = next(iterator);
+        if (done) break;
+        node.next = { next: null, value };
+      }
+      node = node.next;
+      yield node.value;
+    }
+  }
+}
 
 /**
  * Casts an iterable to a `Reiterable` object, which is guaranteed to be
