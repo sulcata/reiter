@@ -39,8 +39,10 @@ function* _flattenDepth(n, iterable, visited) {
  * // => 1, 2, 3, [4], 5, 6
  */
 export default curry(
-  // Cannot be a WeakSet as WeakSets do not hold strings.
-  // A WeakSet wouldn't do anything anyhow. References are
-  // held onto at least until manually deleted.
+  /*
+   * Cannot be a WeakSet as WeakSets do not hold strings.
+   * A WeakSet wouldn't do anything anyhow. References are
+   * held onto at least until manually deleted.
+   */
   (depth, iterable) => _flattenDepth(depth, iterable, new Set())
 );
