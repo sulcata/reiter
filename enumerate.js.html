@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: enumerate.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: enumerate.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/** @module reiter/enumerate */
+
+/**
+ * Pairs each value of `iterable` with an index starting
+ * from `0`. `[index, value]`
+ *
+ * @since 0.0.1
+ * @generator
+ * @function enumerate
+ * @param {ForOfIterable} iterable The iterable.
+ * @yields {Array&lt;number, *>} The next enumerated pair.
+ * @example
+ *
+ * reiter.enumerate("ABC")
+ * // => [0, "A"], [1, "B"], [2, "C"]
+ */
+export default function*(iterable) {
+  let i = 0;
+  for (const value of iterable) {
+    yield [i, value];
+    i++;
+  }
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-reiter_accumulate.html">reiter/accumulate</a></li><li><a href="module-reiter_append.html">reiter/append</a></li><li><a href="module-reiter_cartesian.html">reiter/cartesian</a></li><li><a href="module-reiter_cartesianAll.html">reiter/cartesianAll</a></li><li><a href="module-reiter_chain.html">reiter/chain</a></li><li><a href="module-reiter_chunk.html">reiter/chunk</a></li><li><a href="module-reiter_combinations.html">reiter/combinations</a></li><li><a href="module-reiter_combinationsWithReplacement.html">reiter/combinationsWithReplacement</a></li><li><a href="module-reiter_compact.html">reiter/compact</a></li><li><a href="module-reiter_compose.html">reiter/compose</a></li><li><a href="module-reiter_count.html">reiter/count</a></li><li><a href="module-reiter_curry.html">reiter/curry</a></li><li><a href="module-reiter_cycle.html">reiter/cycle</a></li><li><a href="module-reiter_cycleN.html">reiter/cycleN</a></li><li><a href="module-reiter_drop.html">reiter/drop</a></li><li><a href="module-reiter_dropUntil.html">reiter/dropUntil</a></li><li><a href="module-reiter_dropWhile.html">reiter/dropWhile</a></li><li><a href="module-reiter_enumerate.html">reiter/enumerate</a></li><li><a href="module-reiter_every.html">reiter/every</a></li><li><a href="module-reiter_exclude.html">reiter/exclude</a></li><li><a href="module-reiter_filter.html">reiter/filter</a></li><li><a href="module-reiter_find.html">reiter/find</a></li><li><a href="module-reiter_findLast.html">reiter/findLast</a></li><li><a href="module-reiter_flatten.html">reiter/flatten</a></li><li><a href="module-reiter_flattenDeep.html">reiter/flattenDeep</a></li><li><a href="module-reiter_flattenDepth.html">reiter/flattenDepth</a></li><li><a href="module-reiter_forEach.html">reiter/forEach</a></li><li><a href="module-reiter_fromArrayLike.html">reiter/fromArrayLike</a></li><li><a href="module-reiter_fromPairs.html">reiter/fromPairs</a></li><li><a href="module-reiter_include.html">reiter/include</a></li><li><a href="module-reiter_includes.html">reiter/includes</a></li><li><a href="module-reiter_isArrayLike.html">reiter/isArrayLike</a></li><li><a href="module-reiter_isIterable.html">reiter/isIterable</a></li><li><a href="module-reiter_iter.html">reiter/iter</a></li><li><a href="module-reiter_map.html">reiter/map</a></li><li><a href="module-reiter_max.html">reiter/max</a></li><li><a href="module-reiter_maxBy.html">reiter/maxBy</a></li><li><a href="module-reiter_maxWith.html">reiter/maxWith</a></li><li><a href="module-reiter_min.html">reiter/min</a></li><li><a href="module-reiter_minBy.html">reiter/minBy</a></li><li><a href="module-reiter_minWith.html">reiter/minWith</a></li><li><a href="module-reiter_next.html">reiter/next</a></li><li><a href="module-reiter_nth.html">reiter/nth</a></li><li><a href="module-reiter_partition.html">reiter/partition</a></li><li><a href="module-reiter_permutations.html">reiter/permutations</a></li><li><a href="module-reiter_placeholder.html">reiter/placeholder</a></li><li><a href="module-reiter_powerSet.html">reiter/powerSet</a></li><li><a href="module-reiter_prepend.html">reiter/prepend</a></li><li><a href="module-reiter_product.html">reiter/product</a></li><li><a href="module-reiter_range.html">reiter/range</a></li><li><a href="module-reiter_reduce.html">reiter/reduce</a></li><li><a href="module-reiter_reduceInto.html">reiter/reduceInto</a></li><li><a href="module-reiter_reiter.html">reiter/reiter</a></li><li><a href="module-reiter_reject.html">reiter/reject</a></li><li><a href="module-reiter_repeat.html">reiter/repeat</a></li><li><a href="module-reiter_repeatN.html">reiter/repeatN</a></li><li><a href="module-reiter_slice.html">reiter/slice</a></li><li><a href="module-reiter_some.html">reiter/some</a></li><li><a href="module-reiter_sum.html">reiter/sum</a></li><li><a href="module-reiter_take.html">reiter/take</a></li><li><a href="module-reiter_takeUntil.html">reiter/takeUntil</a></li><li><a href="module-reiter_takeWhile.html">reiter/takeWhile</a></li><li><a href="module-reiter_tee.html">reiter/tee</a></li><li><a href="module-reiter_toPairs.html">reiter/toPairs</a></li><li><a href="module-reiter_uniq.html">reiter/uniq</a></li><li><a href="module-reiter_uniqBy.html">reiter/uniqBy</a></li><li><a href="module-reiter_uniqWith.html">reiter/uniqWith</a></li><li><a href="module-reiter_unzip.html">reiter/unzip</a></li><li><a href="module-reiter_zip.html">reiter/zip</a></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Oct 16 2017 21:44:13 GMT+0000 (UTC)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

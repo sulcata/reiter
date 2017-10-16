@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Home</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Home</h1>
+
+    
+
+
+
+    
+
+
+    <h3> </h3>
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+    <section>
+        <article><h1>reiter</h1><p><a href=""><img src="https://travis-ci.org/sulcata/reiter.svg?branch=v0.1.1" alt="Build Status"></a>
+<a href=""><img src="https://img.shields.io/npm/v/reiter.svg" alt="npm"></a>
+<a href=""><img src="https://img.shields.io/github/license/sulcata/reiter.svg" alt="license"></a></p>
+<p>Various utilities for working with <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols">Iterators and Iterables</a>.</p>
+<p>Building on the iterator and iterable protocols, this library aims to
+provide various utilities for working with iterators.</p>
+<p>To install, run either <code>yarn add reiter</code> or <code>npm install reiter</code>.
+Including it is simple:</p>
+<pre class="prettyprint source lang-js"><code>// Node.js
+const reiter = require(&quot;reiter&quot;);
+
+// Environments with EcmaScript modules such as Babel and Webpack.
+import * as reiter from &quot;reiter&quot;;</code></pre><h2>Motivation</h2><p>Normal functions on collections such as map and filter will construct entire
+arrays for each intermediate result. For small arrays of maybe 20 or so
+elements this will likely be very fast, possibly faster than using iterators
+depending on run-time optimizations. For larger collections, intermediate
+representations can be avoided, only applying methods to each element as it
+is needed.</p>
+<p>Arrays and other finite collections also have the disadvantage of not being
+able to deal with endless sequences, due to their inherently lazy evaluation.</p>
+<h2>Curried</h2><p>All methods with multiple arguments are curried to allow for functional
+programming patterns. The curry function is not particularly optimized,
+so builds using Lodash's curry are available. The package exports <code>curry</code>
+and <code>placeholder</code>. <code>_</code> is an alias of <code>placeholder</code>. A <code>compose</code> function
+is included to aid in composing methods together.</p>
+<h2>Different Builds:</h2><p>By default the UMD bundle (without Lodash's curry) will be loaded by require.</p>
+<p>Each build will have a UMD bundle (<code>index.js</code>), a CommonJS bundle
+(<code>index.common.js</code>), and an EcmaScript module bundle (<code>index.esm.js</code>). Builds
+with the regular built-in curry function are in <code>reiter/dist/</code>, while builds
+referencing the Lodash curry function are in <code>reiter/dist/lodash/</code>.</p>
+<p>All Lodash builds will reference the curry function from the <code>lodash</code> package
+on npm. If you are planning to use this build, be sure to have already
+installed Lodash.</p>
+<h2>Examples</h2><p>Iterate over values and indices cleanly without a traditional for loop:</p>
+<pre class="prettyprint source lang-js"><code>for (const [index, value] of reiter.enumerate([1, 2, 3])) {
+  console.log(`[${index}]: value`);
+}
+// [0]: 1
+// [1]: 2
+// [2]: 3</code></pre><p>Take the first three odds and then take the first three evens from a single
+iterator created by the count method. Only 6 values are ever created. Note
+that this could be done more simply with <code>odds = reiter.count(1, 2)</code> and
+<code>evens = reiter.count(2, 2)</code>. This is just a simple proof of concept.</p>
+<pre class="prettyprint source lang-js"><code>const naturals = reiter.count(1, 1);
+const [naturals1, naturals2] = reiter.tee(2, naturals);
+// partial applications
+const filterOdds = reiter.filter(n => n % 2 === 1);
+const filterEvens = reiter.filter(n => n % 2 === 0);
+const odds = filterOdds(naturals1);
+const evens = filterEvens(naturals2);
+console.log(...reiter.take(3, odds));
+console.log(...reiter.take(3, evens));
+// 1, 3, 5
+// 2, 4, 6</code></pre><p>Avoid deeply nested for loops with <code>cartesianAll</code> and other
+combinatorial functions.</p>
+<pre class="prettyprint source lang-js"><code>const domain = range(-10, 11, 1); // stop value is excluded
+for (const [x, y, z] of reiter.cartesianAll(reiter.tee(3, domain)) {
+  // do something with each coordinate pair ...
+}</code></pre><h2>Caveats</h2><p>For better or worse, iterators are unidirectional and cannot be used more
+than once. Once an iterator is passed to a method, one should consider it
+exhausted and no longer attempt to use it. If you must iterate an iterator
+multiple times, consider using <code>tee</code> or <code>reiter</code>, e.g.:</p>
+<pre class="prettyprint source lang-js"><code>// Iterator copies of iterator.
+const [copy1, copy2, copy3] = reiter.tee(3, iterator);
+
+// A reiterable collection created from iterator.
+const reiterable = reiter.reiter(iterator);</code></pre><p>When passing iterable collections such as Arrays, Sets, and Maps to methods
+of reiter, one should not mutate the collections until after all iterators
+are not in-use. Mutating the collections could result in undefined behavior.</p>
+<h2>Documentation</h2><p>More detailed documentation can be found <a href="https://sulcata.github.io/reiter/">here</a>. Below is a short
+overview organized into groups.</p>
+<h3>General</h3><ul>
+<li><code>accumulate</code></li>
+<li><code>append</code></li>
+<li><code>chain</code></li>
+<li><code>chunk</code></li>
+<li><code>count</code></li>
+<li><code>cycle</code></li>
+<li><code>cycleN</code></li>
+<li><code>enumerate</code></li>
+<li><code>flatten</code></li>
+<li><code>flattenDeep</code></li>
+<li><code>flattenDepth</code></li>
+<li><code>forEach</code></li>
+<li><code>fromArrayLike</code></li>
+<li><code>fromPairs</code></li>
+<li><code>iter</code></li>
+<li><code>map</code></li>
+<li><code>next</code></li>
+<li><code>partition</code></li>
+<li><code>prepend</code></li>
+<li><code>range</code></li>
+<li><code>reduce</code></li>
+<li><code>reduceInto</code></li>
+<li><code>reiter</code></li>
+<li><code>repeat</code></li>
+<li><code>repeatN</code></li>
+<li><code>tee</code></li>
+<li><code>toPairs</code></li>
+<li><code>unzip</code></li>
+<li><code>zip</code></li>
+</ul>
+<h3>Predicates</h3><ul>
+<li><code>every</code></li>
+<li><code>includes</code></li>
+<li><code>isArrayLike</code></li>
+<li><code>isIterable</code></li>
+<li><code>some</code></li>
+</ul>
+<h3>Selection</h3><ul>
+<li><code>compact</code></li>
+<li><code>drop</code></li>
+<li><code>dropUntil</code></li>
+<li><code>dropWhile</code></li>
+<li><code>exclude</code></li>
+<li><code>filter</code></li>
+<li><code>find</code></li>
+<li><code>findLast</code></li>
+<li><code>include</code></li>
+<li><code>nth</code></li>
+<li><code>reject</code></li>
+<li><code>slice</code></li>
+<li><code>take</code></li>
+<li><code>takeUntil</code></li>
+<li><code>takeWhile</code></li>
+<li><code>uniq</code></li>
+<li><code>uniqBy</code></li>
+<li><code>uniqWith</code></li>
+</ul>
+<h3>Math</h3><ul>
+<li><code>max</code></li>
+<li><code>maxBy</code></li>
+<li><code>maxWith</code></li>
+<li><code>min</code></li>
+<li><code>minBy</code></li>
+<li><code>minWith</code></li>
+<li><code>product</code></li>
+<li><code>sum</code></li>
+</ul>
+<h3>Combinatorial</h3><ul>
+<li><code>cartesian</code></li>
+<li><code>cartesianAll</code></li>
+<li><code>combinations</code></li>
+<li><code>combinationsWithReplacement</code></li>
+<li><code>permutations</code></li>
+<li><code>powerSet</code></li>
+</ul>
+<h3>Functional Programming Helpers</h3><ul>
+<li><code>compose</code></li>
+<li><code>curry</code></li>
+<li><code>placeholder</code> / <code>_</code></li>
+</ul></article>
+    </section>
+
+
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-reiter_accumulate.html">reiter/accumulate</a></li><li><a href="module-reiter_append.html">reiter/append</a></li><li><a href="module-reiter_cartesian.html">reiter/cartesian</a></li><li><a href="module-reiter_cartesianAll.html">reiter/cartesianAll</a></li><li><a href="module-reiter_chain.html">reiter/chain</a></li><li><a href="module-reiter_chunk.html">reiter/chunk</a></li><li><a href="module-reiter_combinations.html">reiter/combinations</a></li><li><a href="module-reiter_combinationsWithReplacement.html">reiter/combinationsWithReplacement</a></li><li><a href="module-reiter_compact.html">reiter/compact</a></li><li><a href="module-reiter_compose.html">reiter/compose</a></li><li><a href="module-reiter_count.html">reiter/count</a></li><li><a href="module-reiter_curry.html">reiter/curry</a></li><li><a href="module-reiter_cycle.html">reiter/cycle</a></li><li><a href="module-reiter_cycleN.html">reiter/cycleN</a></li><li><a href="module-reiter_drop.html">reiter/drop</a></li><li><a href="module-reiter_dropUntil.html">reiter/dropUntil</a></li><li><a href="module-reiter_dropWhile.html">reiter/dropWhile</a></li><li><a href="module-reiter_enumerate.html">reiter/enumerate</a></li><li><a href="module-reiter_every.html">reiter/every</a></li><li><a href="module-reiter_exclude.html">reiter/exclude</a></li><li><a href="module-reiter_filter.html">reiter/filter</a></li><li><a href="module-reiter_find.html">reiter/find</a></li><li><a href="module-reiter_findLast.html">reiter/findLast</a></li><li><a href="module-reiter_flatten.html">reiter/flatten</a></li><li><a href="module-reiter_flattenDeep.html">reiter/flattenDeep</a></li><li><a href="module-reiter_flattenDepth.html">reiter/flattenDepth</a></li><li><a href="module-reiter_forEach.html">reiter/forEach</a></li><li><a href="module-reiter_fromArrayLike.html">reiter/fromArrayLike</a></li><li><a href="module-reiter_fromPairs.html">reiter/fromPairs</a></li><li><a href="module-reiter_include.html">reiter/include</a></li><li><a href="module-reiter_includes.html">reiter/includes</a></li><li><a href="module-reiter_isArrayLike.html">reiter/isArrayLike</a></li><li><a href="module-reiter_isIterable.html">reiter/isIterable</a></li><li><a href="module-reiter_iter.html">reiter/iter</a></li><li><a href="module-reiter_map.html">reiter/map</a></li><li><a href="module-reiter_max.html">reiter/max</a></li><li><a href="module-reiter_maxBy.html">reiter/maxBy</a></li><li><a href="module-reiter_maxWith.html">reiter/maxWith</a></li><li><a href="module-reiter_min.html">reiter/min</a></li><li><a href="module-reiter_minBy.html">reiter/minBy</a></li><li><a href="module-reiter_minWith.html">reiter/minWith</a></li><li><a href="module-reiter_next.html">reiter/next</a></li><li><a href="module-reiter_nth.html">reiter/nth</a></li><li><a href="module-reiter_partition.html">reiter/partition</a></li><li><a href="module-reiter_permutations.html">reiter/permutations</a></li><li><a href="module-reiter_placeholder.html">reiter/placeholder</a></li><li><a href="module-reiter_powerSet.html">reiter/powerSet</a></li><li><a href="module-reiter_prepend.html">reiter/prepend</a></li><li><a href="module-reiter_product.html">reiter/product</a></li><li><a href="module-reiter_range.html">reiter/range</a></li><li><a href="module-reiter_reduce.html">reiter/reduce</a></li><li><a href="module-reiter_reduceInto.html">reiter/reduceInto</a></li><li><a href="module-reiter_reiter.html">reiter/reiter</a></li><li><a href="module-reiter_reject.html">reiter/reject</a></li><li><a href="module-reiter_repeat.html">reiter/repeat</a></li><li><a href="module-reiter_repeatN.html">reiter/repeatN</a></li><li><a href="module-reiter_slice.html">reiter/slice</a></li><li><a href="module-reiter_some.html">reiter/some</a></li><li><a href="module-reiter_sum.html">reiter/sum</a></li><li><a href="module-reiter_take.html">reiter/take</a></li><li><a href="module-reiter_takeUntil.html">reiter/takeUntil</a></li><li><a href="module-reiter_takeWhile.html">reiter/takeWhile</a></li><li><a href="module-reiter_tee.html">reiter/tee</a></li><li><a href="module-reiter_toPairs.html">reiter/toPairs</a></li><li><a href="module-reiter_uniq.html">reiter/uniq</a></li><li><a href="module-reiter_uniqBy.html">reiter/uniqBy</a></li><li><a href="module-reiter_uniqWith.html">reiter/uniqWith</a></li><li><a href="module-reiter_unzip.html">reiter/unzip</a></li><li><a href="module-reiter_zip.html">reiter/zip</a></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Oct 16 2017 21:44:13 GMT+0000 (UTC)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
